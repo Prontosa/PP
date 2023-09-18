@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask isGround;
     
 
-    private bool isGrounded;
+    [SerializeField] bool isGrounded;
 
     private void Awake()
     {
@@ -32,14 +32,15 @@ public class Player : MonoBehaviour
     void ChackGround()
     {
         isGrounded = collLeg.IsTouchingLayers(isGround);
+        
     }
 
 
     void Moving()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Vector2 moveVelocity = new Vector2(horizontalInput * moveSpeed * Time.deltaTime, rigid.velocity.y);
-        rigid.velocity = new Vector2(moveVelocity.x / Time.deltaTime, rigid.velocity.y);
+        Vector2 moveVelocity = new Vector2(horizontalInput * moveSpeed, rigid.velocity.y);
+        rigid.velocity = new Vector2(moveVelocity.x, rigid.velocity.y);
         //float horizontalInput = Input.GetAxisRaw("Horizontal");
         //Vector2 moveVelocity = new Vector2(horizontalInput * moveSpeed , rigid.velocity.y);
         //rigid.velocity = moveVelocity;
